@@ -94,11 +94,18 @@ function ExpandLink({ href, imageSrc, title, index, expandingIndex, onMobileClic
           onMobileClick();
         }
       }}
-      className={`flex-1 group relative overflow-hidden transition-all duration-600 ease-out ${
+      style={{
+        animation: isExpanding 
+          ? 'expandFull 0.6s ease-out forwards'
+          : isHidden
+          ? 'collapseZero 0.6s ease-out forwards'
+          : 'none'
+      }}
+      className={`flex-1 group relative overflow-hidden transition-none ${
         isExpanding 
           ? 'fixed top-0 left-0 right-0 bottom-0 z-50 h-screen w-screen flex-1' 
           : isHidden 
-          ? 'h-0 md:h-auto md:h-screen opacity-0' 
+          ? 'h-0 md:h-auto md:h-screen overflow-hidden' 
           : 'h-56 md:h-auto md:h-screen'
       }`}
     >
