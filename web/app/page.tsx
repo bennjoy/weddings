@@ -22,46 +22,30 @@ export default function Home() {
       </div>
 
       {/* Photography Column */}
-      <Link href="/photographers" className="flex-1 group relative overflow-hidden h-56 md:h-auto md:h-screen">
-        <img
-          src={`${basePath}/photobg.jpg`}
-          alt="Photography"
-          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 grayscale"
-        />
-        <div className="absolute inset-0 bg-black/30 group-hover:bg-black/50 transition-colors duration-500 flex items-center justify-center">
-          <h1 className="playfair text-4xl md:text-5xl font-bold text-white drop-shadow-2xl tracking-widest">
-            PHOTO
-          </h1>
-        </div>
-      </Link>
+      <ExpandLink href="/photographers" imageSrc={`${basePath}/photobg.jpg`} title="PHOTO" />
 
       {/* Venue Column */}
-      <Link href="/venues" className="flex-1 group relative overflow-hidden h-56 md:h-auto md:h-screen">
-        <img
-          src={`${basePath}/venuebg.jpg`}
-          alt="Venue"
-          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 grayscale"
-        />
-        <div className="absolute inset-0 bg-black/30 group-hover:bg-black/50 transition-colors duration-500 flex items-center justify-center">
-          <h1 className="playfair text-4xl md:text-5xl font-bold text-white drop-shadow-2xl tracking-widest">
-            VENUE
-          </h1>
-        </div>
-      </Link>
+      <ExpandLink href="/venues" imageSrc={`${basePath}/venuebg.jpg`} title="VENUE" />
 
       {/* Music Column */}
-      <Link href="/bands" className="flex-1 group relative overflow-hidden h-56 md:h-auto md:h-screen">
-        <img
-          src={`${basePath}/musicbg.jpg`}
-          alt="Music"
-          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 grayscale"
-        />
-        <div className="absolute inset-0 bg-black/30 group-hover:bg-black/50 transition-colors duration-500 flex items-center justify-center">
-          <h1 className="playfair text-4xl md:text-5xl font-bold text-white drop-shadow-2xl tracking-widest">
-            MUSIC
-          </h1>
-        </div>
-      </Link>
+      <ExpandLink href="/bands" imageSrc={`${basePath}/musicbg.jpg`} title="MUSIC" />
     </div>
+  );
+}
+
+function ExpandLink({ href, imageSrc, title }: { href: string; imageSrc: string; title: string }) {
+  return (
+    <Link href={href} className="flex-1 group relative overflow-hidden h-56 md:h-auto md:h-screen">
+      <img
+        src={imageSrc}
+        alt={title}
+        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+      />
+      <div className="absolute inset-0 bg-black/30 group-hover:bg-black/50 transition-colors duration-500 flex items-center justify-center">
+        <h1 className="playfair text-4xl md:text-5xl font-bold text-white drop-shadow-2xl tracking-widest">
+          {title}
+        </h1>
+      </div>
+    </Link>
   );
 }

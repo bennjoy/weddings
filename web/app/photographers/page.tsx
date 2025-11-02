@@ -41,13 +41,13 @@ export default function PhotographersPage() {
               />
               
               {/* Hover/Tap Overlay */}
-              <div className={`absolute inset-0 flex flex-col items-center justify-center gap-4 transition-all duration-300 ${
+              <div className={`absolute inset-0 flex flex-col items-center justify-center gap-3 transition-all duration-300 ${
                 tappedIndex === index || true ? 'group-hover:bg-black/60' : 'bg-black/0'
               } ${tappedIndex === index ? 'bg-black/60 opacity-100' : 'bg-black/0 opacity-0 group-hover:opacity-100'}`}>
-                <button className="playfair text-xl font-bold text-white border-2 border-white px-8 py-2 hover:bg-white hover:text-black transition-all duration-300" style={{ color: 'inherit' }}>
+                <button className="playfair text-sm font-bold text-white border-2 border-white px-5 py-1 transition-all duration-300">
                   SEE MORE
                 </button>
-                <button className="playfair text-xl font-bold text-white bg-white/20 backdrop-blur-sm px-8 py-2 hover:bg-white hover:text-black transition-all duration-300" style={{ color: 'inherit' }}>
+                <button className="playfair text-sm font-bold text-white bg-white/20 backdrop-blur-sm px-5 py-1 transition-all duration-300">
                   BOOK NOW
                 </button>
               </div>
