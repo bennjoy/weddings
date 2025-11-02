@@ -91,8 +91,8 @@ function ExpandLink({ href, imageSrc, title, isExpanding, onMobileClick }: Expan
           onMobileClick();
         }
       }}
-      className={`flex-1 group relative overflow-hidden h-56 md:h-auto md:h-screen transition-all duration-600 ${
-        isExpanding ? 'fixed inset-0 z-50 h-screen' : ''
+      className={`flex-1 group relative overflow-hidden h-56 md:h-auto md:h-screen transition-all duration-600 ease-out ${
+        isExpanding ? 'fixed top-0 left-0 right-0 z-50 h-screen w-screen' : ''
       }`}
     >
       <img
