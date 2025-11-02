@@ -14,50 +14,50 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Center Text */}
-      <div className="absolute top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20 text-center pointer-events-none">
+      {/* Center Text - Hidden on mobile */}
+      <div className="hidden md:flex absolute top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20 text-center pointer-events-none">
         <p className="text-xl text-white" style={{ fontFamily: "'Crimson Text', serif", letterSpacing: '0.25em', filter: 'blur(0.5px) drop-shadow(0 4px 8px rgba(0, 0, 0, 0.6))' }}>
           Find your perfect...
         </p>
       </div>
 
       {/* Photography Column */}
-      <Link href="/photographers" className="flex-1 group relative overflow-hidden h-screen md:h-auto">
+      <Link href="/photographers" className="flex-1 group relative overflow-hidden h-56 md:h-auto md:h-screen">
         <img
           src={`${basePath}/photobg.jpg`}
           alt="Photography"
           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 grayscale"
         />
         <div className="absolute inset-0 bg-black/30 group-hover:bg-black/50 transition-colors duration-500 flex items-center justify-center">
-          <h1 className="playfair text-5xl font-bold text-white drop-shadow-2xl tracking-widest">
+          <h1 className="playfair text-4xl md:text-5xl font-bold text-white drop-shadow-2xl tracking-widest">
             PHOTO
           </h1>
         </div>
       </Link>
 
       {/* Venue Column */}
-      <Link href="/venues" className="flex-1 group relative overflow-hidden h-screen md:h-auto">
+      <Link href="/venues" className="flex-1 group relative overflow-hidden h-56 md:h-auto md:h-screen">
         <img
           src={`${basePath}/venuebg.jpg`}
           alt="Venue"
           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 grayscale"
         />
         <div className="absolute inset-0 bg-black/30 group-hover:bg-black/50 transition-colors duration-500 flex items-center justify-center">
-          <h1 className="playfair text-5xl font-bold text-white drop-shadow-2xl tracking-widest">
+          <h1 className="playfair text-4xl md:text-5xl font-bold text-white drop-shadow-2xl tracking-widest">
             VENUE
           </h1>
         </div>
       </Link>
 
       {/* Music Column */}
-      <Link href="/bands" className="flex-1 group relative overflow-hidden h-screen md:h-auto">
+      <Link href="/bands" className="flex-1 group relative overflow-hidden h-56 md:h-auto md:h-screen">
         <img
           src={`${basePath}/musicbg.jpg`}
           alt="Music"
           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 grayscale"
         />
         <div className="absolute inset-0 bg-black/30 group-hover:bg-black/50 transition-colors duration-500 flex items-center justify-center">
-          <h1 className="playfair text-5xl font-bold text-white drop-shadow-2xl tracking-widest">
+          <h1 className="playfair text-4xl md:text-5xl font-bold text-white drop-shadow-2xl tracking-widest">
             MUSIC
           </h1>
         </div>

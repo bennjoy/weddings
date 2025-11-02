@@ -1,4 +1,7 @@
+'use client';
+
 import Link from "next/link";
+import { useState } from "react";
 
 const basePath = "/weddings";
 
@@ -13,6 +16,12 @@ export default function VenuesPage() {
     
     return { url: `${basePath}/venue${i + 1}.jpg`, occupancy, hasAccommodation, bedCount };
   });
+
+  const [tappedIndex, setTappedIndex] = useState<number | null>(null);
+
+  const handleTap = (index: number) => {
+    setTappedIndex(tappedIndex === index ? null : index);
+  };
 
   return (
     <div className="relative min-h-screen" style={{ backgroundColor: '#1a1a1a' }}>
@@ -32,6 +41,7 @@ export default function VenuesPage() {
             <div
               key={index}
               className="group relative overflow-hidden aspect-square cursor-pointer"
+              onClick={() => handleTap(index)}
             >
               <img
                 src={venue.url}
@@ -39,8 +49,10 @@ export default function VenuesPage() {
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
               />
               
-              {/* Bottom Left Info Overlay */}
-              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4 text-white text-sm">
+              {/* Bottom Left Info Overlay - Hidden when tapped on mobile */}
+              <div className={`absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4 text-white text-sm transition-opacity duration-300 ${
+                tappedIndex === index ? 'opacity-0' : 'opacity-100'
+              }`}>
                 <div className="flex items-center gap-2 mb-2">
                   <span style={{ filter: 'brightness(0) invert(1)' }}>👥</span>
                   <span>{venue.occupancy} guests</span>
@@ -53,8 +65,10 @@ export default function VenuesPage() {
                 )}
               </div>
               
-              {/* Hover Overlay */}
-              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/60 transition-colors duration-300 flex flex-col items-center justify-center gap-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              {/* Hover/Tap Overlay */}
+              <div className={`absolute inset-0 flex flex-col items-center justify-center gap-4 transition-all duration-300 ${
+                tappedIndex === index ? 'bg-black/60 opacity-100' : 'bg-black/0 opacity-0 group-hover:opacity-100 group-hover:bg-black/60'
+              }`}>
                 <button className="playfair text-xl font-bold text-white border-2 border-white px-8 py-2 hover:bg-white hover:text-black transition-all duration-300">
                   SEE MORE
                 </button>

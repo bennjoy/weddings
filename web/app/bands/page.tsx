@@ -1,10 +1,18 @@
+'use client';
+
 import Link from "next/link";
+import { useState } from "react";
 
 const basePath = "/weddings";
 
 export default function BandsPage() {
   // Generate array of band images from band1.jpg to band12.jpg
   const bandImages = Array.from({ length: 12 }, (_, i) => `${basePath}/band${i + 1}.jpg`);
+  const [tappedIndex, setTappedIndex] = useState<number | null>(null);
+
+  const handleTap = (index: number) => {
+    setTappedIndex(tappedIndex === index ? null : index);
+  };
 
   return (
     <div className="relative min-h-screen" style={{ backgroundColor: '#1a1a1a' }}>
@@ -24,6 +32,7 @@ export default function BandsPage() {
             <div
               key={index}
               className="group relative overflow-hidden aspect-square cursor-pointer"
+              onClick={() => handleTap(index)}
             >
               <img
                 src={image}
@@ -31,8 +40,10 @@ export default function BandsPage() {
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
               />
               
-              {/* Hover Overlay */}
-              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/60 transition-colors duration-300 flex flex-col items-center justify-center gap-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              {/* Hover/Tap Overlay */}
+              <div className={`absolute inset-0 flex flex-col items-center justify-center gap-4 transition-all duration-300 ${
+                tappedIndex === index ? 'bg-black/60 opacity-100' : 'bg-black/0 opacity-0 group-hover:opacity-100 group-hover:bg-black/60'
+              }`}>
                 <button className="playfair text-xl font-bold text-white border-2 border-white px-8 py-2 hover:bg-white hover:text-black transition-all duration-300">
                   SEE MORE
                 </button>
