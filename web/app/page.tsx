@@ -44,7 +44,7 @@ export default function Home() {
         imageSrc={`${basePath}/photobg.jpg`} 
         title="PHOTO" 
         index={0}
-        isExpanding={expandingIndex === 0}
+        expandingIndex={expandingIndex}
         onMobileClick={() => handleMobileClick(0, "/photographers")}
       />
 
@@ -54,7 +54,7 @@ export default function Home() {
         imageSrc={`${basePath}/venuebg.jpg`} 
         title="VENUE" 
         index={1}
-        isExpanding={expandingIndex === 1}
+        expandingIndex={expandingIndex}
         onMobileClick={() => handleMobileClick(1, "/venues")}
       />
 
@@ -64,7 +64,7 @@ export default function Home() {
         imageSrc={`${basePath}/musicbg.jpg`} 
         title="MUSIC" 
         index={2}
-        isExpanding={expandingIndex === 2}
+        expandingIndex={expandingIndex}
         onMobileClick={() => handleMobileClick(2, "/bands")}
       />
     </div>
@@ -76,11 +76,14 @@ interface ExpandLinkProps {
   imageSrc: string;
   title: string;
   index: number;
-  isExpanding: boolean;
+  expandingIndex: number | null;
   onMobileClick: () => void;
 }
 
-function ExpandLink({ href, imageSrc, title, isExpanding, onMobileClick }: ExpandLinkProps) {
+function ExpandLink({ href, imageSrc, title, index, expandingIndex, onMobileClick }: ExpandLinkProps) {
+  const isExpanding = expandingIndex === index;
+  const isHidden = expandingIndex !== null && expandingIndex !== index;
+
   return (
     <Link 
       href={href}
@@ -91,8 +94,12 @@ function ExpandLink({ href, imageSrc, title, isExpanding, onMobileClick }: Expan
           onMobileClick();
         }
       }}
-      className={`flex-1 group relative overflow-hidden h-56 md:h-auto md:h-screen transition-all duration-600 ease-out ${
-        isExpanding ? 'fixed top-0 left-0 right-0 z-50 h-screen w-screen' : ''
+      className={`flex-1 group relative overflow-hidden transition-all duration-600 ease-out ${
+        isExpanding 
+          ? 'fixed top-0 left-0 right-0 bottom-0 z-50 h-screen w-screen flex-1' 
+          : isHidden 
+          ? 'h-0 md:h-auto md:h-screen opacity-0' 
+          : 'h-56 md:h-auto md:h-screen'
       }`}
     >
       <img
