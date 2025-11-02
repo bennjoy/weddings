@@ -29,13 +29,8 @@ jobs:
         run: npm run build
         working-directory: ./web
 
-      - name: Export static site
-        run: npm run export
-        working-directory: ./web
-
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./web/out
-          cname: weddings.bennjoy.com
