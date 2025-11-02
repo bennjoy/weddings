@@ -1,8 +1,21 @@
-import Link from "next/link";
+'use client';
+
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 const basePath = "/weddings";
 
 export default function Home() {
+  const router = useRouter();
+  const [expandingIndex, setExpandingIndex] = useState<number | null>(null);
+
+  const handleClick = (index: number, href: string) => {
+    setExpandingIndex(index);
+    setTimeout(() => {
+      router.push(href);
+    }, 600); // Duration matches the animation
+  };
+
   return (
     <div className="relative flex flex-col md:flex-row overflow-hidden h-auto md:h-screen w-full">
       {/* Translucent Top Menu with Fade */}
@@ -22,20 +35,55 @@ export default function Home() {
       </div>
 
       {/* Photography Column */}
-      <ExpandLink href="/photographers" imageSrc={`${basePath}/photobg.jpg`} title="PHOTO" />
+      <ExpandLink 
+        href="/photographers" 
+        imageSrc={`${basePath}/photobg.jpg`} 
+        title="PHOTO" 
+        index={0}
+        isExpanding={expandingIndex === 0}
+        onClick={() => handleClick(0, "/photographers")}
+      />
 
       {/* Venue Column */}
-      <ExpandLink href="/venues" imageSrc={`${basePath}/venuebg.jpg`} title="VENUE" />
+      <ExpandLink 
+        href="/venues" 
+        imageSrc={`${basePath}/venuebg.jpg`} 
+        title="VENUE" 
+        index={1}
+        isExpanding={expandingIndex === 1}
+        onClick={() => handleClick(1, "/venues")}
+      />
 
       {/* Music Column */}
-      <ExpandLink href="/bands" imageSrc={`${basePath}/musicbg.jpg`} title="MUSIC" />
+      <ExpandLink 
+        href="/bands" 
+        imageSrc={`${basePath}/musicbg.jpg`} 
+        title="MUSIC" 
+        index={2}
+        isExpanding={expandingIndex === 2}
+        onClick={() => handleClick(2, "/bands")}
+      />
     </div>
   );
 }
 
-function ExpandLink({ href, imageSrc, title }: { href: string; imageSrc: string; title: string }) {
+interface ExpandLinkProps {
+  href: string;
+  imageSrc: string;
+  title: string;
+  index: number;
+  isExpanding: boolean;
+  onClick: () => void;
+}
+
+function ExpandLink({ imageSrc, title, isExpanding, onClick }: ExpandLinkProps) {
   return (
-    <Link href={href} className="flex-1 group relative overflow-hidden h-56 md:h-auto md:h-screen">
+    <div 
+      className={`flex-1 group relative overflow-hidden h-56 md:h-auto md:h-screen cursor-pointer transition-all duration-600 ${
+        isExpanding ? 'flex-1 md:flex-none md:w-full md:h-screen fixed inset-0 z-50' : ''
+      }`}
+      onClick={onClick}
+    >
       <img
         src={imageSrc}
         alt={title}
@@ -46,6 +94,6 @@ function ExpandLink({ href, imageSrc, title }: { href: string; imageSrc: string;
           {title}
         </h1>
       </div>
-    </Link>
+    </div>
   );
 }
