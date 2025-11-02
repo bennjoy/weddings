@@ -1,5 +1,6 @@
 'use client';
 
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -9,11 +10,14 @@ export default function Home() {
   const router = useRouter();
   const [expandingIndex, setExpandingIndex] = useState<number | null>(null);
 
-  const handleClick = (index: number, href: string) => {
-    setExpandingIndex(index);
-    setTimeout(() => {
-      router.push(href);
-    }, 600); // Duration matches the animation
+  const handleMobileClick = (index: number, href: string) => {
+    // Only expand on mobile
+    if (window.innerWidth < 768) {
+      setExpandingIndex(index);
+      setTimeout(() => {
+        router.push(href);
+      }, 600);
+    }
   };
 
   return (
@@ -41,7 +45,7 @@ export default function Home() {
         title="PHOTO" 
         index={0}
         isExpanding={expandingIndex === 0}
-        onClick={() => handleClick(0, "/photographers")}
+        onMobileClick={() => handleMobileClick(0, "/photographers")}
       />
 
       {/* Venue Column */}
@@ -51,7 +55,7 @@ export default function Home() {
         title="VENUE" 
         index={1}
         isExpanding={expandingIndex === 1}
-        onClick={() => handleClick(1, "/venues")}
+        onMobileClick={() => handleMobileClick(1, "/venues")}
       />
 
       {/* Music Column */}
@@ -61,7 +65,7 @@ export default function Home() {
         title="MUSIC" 
         index={2}
         isExpanding={expandingIndex === 2}
-        onClick={() => handleClick(2, "/bands")}
+        onMobileClick={() => handleMobileClick(2, "/bands")}
       />
     </div>
   );
@@ -73,16 +77,23 @@ interface ExpandLinkProps {
   title: string;
   index: number;
   isExpanding: boolean;
-  onClick: () => void;
+  onMobileClick: () => void;
 }
 
-function ExpandLink({ imageSrc, title, isExpanding, onClick }: ExpandLinkProps) {
+function ExpandLink({ href, imageSrc, title, isExpanding, onMobileClick }: ExpandLinkProps) {
   return (
-    <div 
-      className={`flex-1 group relative overflow-hidden h-56 md:h-auto md:h-screen cursor-pointer transition-all duration-600 ${
-        isExpanding ? 'flex-1 md:flex-none md:w-full md:h-screen fixed inset-0 z-50' : ''
+    <Link 
+      href={href}
+      onClick={(e) => {
+        // On mobile, prevent default and use expand animation
+        if (window.innerWidth < 768) {
+          e.preventDefault();
+          onMobileClick();
+        }
+      }}
+      className={`flex-1 group relative overflow-hidden h-56 md:h-auto md:h-screen transition-all duration-600 ${
+        isExpanding ? 'fixed inset-0 z-50 h-screen' : ''
       }`}
-      onClick={onClick}
     >
       <img
         src={imageSrc}
@@ -94,6 +105,6 @@ function ExpandLink({ imageSrc, title, isExpanding, onClick }: ExpandLinkProps) 
           {title}
         </h1>
       </div>
-    </div>
+    </Link>
   );
 }
