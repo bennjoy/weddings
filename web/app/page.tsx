@@ -98,7 +98,7 @@ function ExpandLink({ href, imageSrc, title, isExpanding, onMobileClick }: Expan
       <img
         src={imageSrc}
         alt={title}
-        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 grayscale"
       />
       <div className="absolute inset-0 bg-black/30 group-hover:bg-black/50 transition-colors duration-500 flex items-center justify-center">
         <h1 className="playfair text-4xl md:text-5xl font-bold text-white drop-shadow-2xl tracking-widest">
