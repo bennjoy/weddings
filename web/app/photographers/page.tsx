@@ -1,8 +1,10 @@
 import Link from "next/link";
 
+const basePath = "/weddings";
+
 export default function PhotographersPage() {
   // Generate array of photo URLs from photo1.jpg to photo14.jpg
-  const photos = Array.from({ length: 14 }, (_, i) => `/photo${i + 1}.jpg`);
+  const photos = Array.from({ length: 14 }, (_, i) => `${basePath}/photo${i + 1}.jpg`);
 
   return (
     <div className="relative min-h-screen" style={{ backgroundColor: '#1a1a1a' }}>

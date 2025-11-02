@@ -1,5 +1,7 @@
 import Link from "next/link";
 
+const basePath = "/weddings";
+
 export default function VenuesPage() {
   // Generate array of venue images from venue1.jpg to venue12.jpg
   const venueImages = Array.from({ length: 12 }, (_, i) => {
@@ -9,7 +11,7 @@ export default function VenuesPage() {
     const hasAccommodation = Math.random() > 0.5;
     const bedCount = hasAccommodation ? Math.floor(Math.random() * 50) + 10 : 0;
     
-    return { url: `/venue${i + 1}.jpg`, occupancy, hasAccommodation, bedCount };
+    return { url: `${basePath}/venue${i + 1}.jpg`, occupancy, hasAccommodation, bedCount };
   });
 
   return (

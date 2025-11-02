@@ -1,5 +1,7 @@
 import Link from "next/link";
 
+const basePath = "/weddings";
+
 export default function Home() {
   return (
     <div className="relative flex flex-col md:flex-row overflow-hidden h-auto md:h-screen w-full">
@@ -22,7 +24,7 @@ export default function Home() {
       {/* Photography Column */}
       <Link href="/photographers" className="flex-1 group relative overflow-hidden h-screen md:h-auto">
         <img
-          src="/photobg.jpg"
+          src={`${basePath}/photobg.jpg`}
           alt="Photography"
           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 grayscale"
         />
@@ -36,7 +38,7 @@ export default function Home() {
       {/* Venue Column */}
       <Link href="/venues" className="flex-1 group relative overflow-hidden h-screen md:h-auto">
         <img
-          src="/venuebg.jpg"
+          src={`${basePath}/venuebg.jpg`}
           alt="Venue"
           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 grayscale"
         />
@@ -50,7 +52,7 @@ export default function Home() {
       {/* Music Column */}
       <Link href="/bands" className="flex-1 group relative overflow-hidden h-screen md:h-auto">
         <img
-          src="/musicbg.jpg"
+          src={`${basePath}/musicbg.jpg`}
           alt="Music"
           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 grayscale"
         />

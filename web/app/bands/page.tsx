@@ -1,8 +1,10 @@
 import Link from "next/link";
 
+const basePath = "/weddings";
+
 export default function BandsPage() {
   // Generate array of band images from band1.jpg to band12.jpg
-  const bandImages = Array.from({ length: 12 }, (_, i) => `/band${i + 1}.jpg`);
+  const bandImages = Array.from({ length: 12 }, (_, i) => `${basePath}/band${i + 1}.jpg`);
 
   return (
     <div className="relative min-h-screen" style={{ backgroundColor: '#1a1a1a' }}>
