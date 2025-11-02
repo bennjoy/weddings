@@ -27,10 +27,14 @@ export default function VenuesPage() {
     <div className="relative min-h-screen" style={{ backgroundColor: '#1a1a1a' }}>
       {/* Translucent Top Menu with Fade - Exact same as homepage */}
       <div className="absolute top-0 left-0 right-0 z-10 bg-gradient-to-b from-black/40 via-black/20 to-transparent pointer-events-auto h-32">
-        <div className="h-20 flex items-center justify-center">
+        <div className="h-20 flex items-center justify-between px-4">
+          <Link href="/" className="text-white text-2xl hover:opacity-70 transition-opacity duration-300">
+            ←
+          </Link>
           <Link href="/" className="playfair-light text-3xl text-white drop-shadow-lg tracking-wide hover:opacity-80 transition-opacity duration-300 block" style={{ letterSpacing: '2px' }}>
             WE DO<span className="text-sm align-super">™</span>
           </Link>
+          <div className="w-8"></div>
         </div>
       </div>
 
