@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@100;200;300;400;500;600;700;800;900&family=Cormorant+Garamond:wght@300;400;500&family=Crimson+Text:wght@400;600&display=swap');
+
+@import "tailwindcss";
+
+html {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+html::-webkit-scrollbar {
+  display: none;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+:root {
+  --background: #fafbf8;
+  --foreground: #2c2c2c;
+  --gold-primary: #d4af37;
+  --gold-light: #f4e4c1;
+  --gold-dark: #b8860b;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: 'Cormorant Garamond', serif;
+  letter-spacing: 0.3px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Playfair Display', serif !important;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+a {
+  color: inherit;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: inherit;
+}
+
+.playfair {
+  font-family: 'Playfair Display', serif !important;
+  font-weight: 700;
+}
+
+.playfair-light {
+  font-family: 'Playfair Display', serif !important;
+  font-weight: 200 !important;
+}
+
+.text-white {
+  color: #ffffff !important;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+button:hover {
+  color: #000000 !important;
+}
